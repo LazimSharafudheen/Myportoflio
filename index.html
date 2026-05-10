@@ -73,17 +73,29 @@ body{background:var(--cream);color:var(--dark);font-family:'Poppins',sans-serif;
 
 .hero-btn:hover{background:#e0653a;transform:translateY(-2px);}
 
-.icon-circle{
-  width:130px;
-  height:130px;
-  background:var(--gray);
+.profile-pic-container{
+  width:160px;
+  height:160px;
   border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:70px;
-  color:white;
-  box-shadow:0 15px 50px rgba(0,0,0,0.15);
+  padding:6px;
+  background:linear-gradient(135deg, var(--orange), #ffb75e);
+  box-shadow:0 15px 35px rgba(241,122,63,0.3), inset 0 0 0 4px var(--cream);
+  margin-bottom:2rem;
+  transform:translateZ(0);
+  transition:all 0.3s;
+}
+
+.profile-pic-container:hover{
+  transform:translateY(-5px) scale(1.05);
+  box-shadow:0 25px 45px rgba(241,122,63,0.4), inset 0 0 0 4px var(--cream);
+}
+
+.profile-pic{
+  width:100%;
+  height:100%;
+  border-radius:50%;
+  object-fit:cover;
+  background:#fff;
 }
 
 /* 3D SCENE - DESKTOP MONITOR */
@@ -367,83 +379,7 @@ body.scrolled .plant-container{opacity:0;}
 .leaf:nth-child(2){transform:rotate(0deg) translateY(-8px);left:10px;}
 .leaf:nth-child(3){transform:rotate(-70deg) translateY(0);left:-25px;}
 
-/* CHARACTER */
-.character{
-  position:absolute;
-  bottom:130px;
-  left:50%;
-  transform:translateX(-160px) translateZ(110px);
-  width:80px;
-  height:120px;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:0;
-  opacity:1;
-  transition:opacity 0.8s ease;
-}
-
-body.scrolled .character{opacity:0;}
-
-.head{
-  width:45px;
-  height:50px;
-  background:linear-gradient(135deg,#f4a76e,#e8964a);
-  border-radius:45% 45% 50% 50%;
-  position:relative;
-  box-shadow:0 4px 12px rgba(0,0,0,0.2);
-}
-
-.hair{
-  position:absolute;
-  top:-10px;
-  left:50%;
-  transform:translateX(-50%);
-  width:50px;
-  height:25px;
-  background:#3d2b1f;
-  border-radius:50% 50% 20% 20%;
-}
-
-.body{
-  width:48px;
-  height:45px;
-  background:linear-gradient(90deg,#3a5a7a,#2d4a6a);
-  border-radius:8px 8px 4px 4px;
-  position:relative;
-  box-shadow:0 4px 10px rgba(0,0,0,0.2);
-  margin-top:-5px;
-}
-
-.arm{
-  position:absolute;
-  width:10px;
-  height:32px;
-  background:#3a5a7a;
-  border-radius:5px;
-  top:6px;
-}
-
-.arm.left{left:-12px;transform:rotate(-25deg);}
-.arm.right{right:-12px;transform:rotate(25deg);}
-
-.legs{
-  position:absolute;
-  bottom:-20px;
-  left:50%;
-  transform:translateX(-50%);
-  width:30px;
-  display:flex;
-  gap:6px;
-}
-
-.leg{
-  width:12px;
-  height:20px;
-  background:#2a1f14;
-  border-radius:3px;
-  box-shadow:0 3px 8px rgba(0,0,0,0.15);
-}
+/* CHARACTER CSS REMOVED - Replaced by 3D Anime Avatar in Hero Content */
 
 /* WALL ITEMS */
 .wall-items{
@@ -686,13 +622,16 @@ textarea.form-input{resize:vertical;min-height:80px;}
 <!-- HERO SECTION -->
 <section id="hero">
   <div class="hero-content">
+    <div class="profile-pic-container">
+      <!-- Added a great 3D anime style fallback avatar if local file isn't found -->
+      <img src="anime_avatar.png" alt="3D Anime Avatar" class="profile-pic" onerror="this.src='https://api.dicebear.com/9.x/micah/svg?seed=Lazim&backgroundColor=e8dcc8'"/>
+    </div>
     <h1>Hi, my name is<br/><strong>Lazim</strong>.</h1>
     <p>Software Engineer & Data Analyst. Building AI systems and beautiful dashboards.</p>
     <div>
       <button class="hero-btn" onclick="scrollDown()">Get in touch</button>
       <a href="#" class="hero-btn cv-btn" download>Download CV</a>
     </div>
-    <div class="icon-circle">👨‍💻</div>
   </div>
 
   <div class="scene">
@@ -936,20 +875,7 @@ textarea.form-input{resize:vertical;min-height:80px;}
         <div class="pot"></div>
       </div>
 
-      <!-- Character -->
-      <div class="character">
-        <div class="head">
-          <div class="hair"></div>
-        </div>
-        <div class="body">
-          <div class="arm left"></div>
-          <div class="arm right"></div>
-          <div class="legs">
-            <div class="leg"></div>
-            <div class="leg"></div>
-          </div>
-        </div>
-      </div>
+
 
       <!-- Wall Items -->
       <div class="wall-items">

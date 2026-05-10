@@ -6,128 +6,159 @@
 <title>Lazim Sharafudheen</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&display=swap" rel="stylesheet"/>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;}
-:root{--cream:#e8dcc8;--dark:#0a1929;--orange:#f17a3f;--gray:#666;--light-gray:#999;}
-html{scroll-behavior:smooth;}
-body{background:var(--cream);color:var(--dark);font-family:'Poppins',sans-serif;overflow-x:hidden;}
-
-/* HERO SECTION - FULL SCREEN */
-#hero{
-  min-height:100vh;
-  display:grid;
-  grid-template-columns:1fr 1.4fr;
-  align-items:center;
-  padding:0 80px;
-  gap:60px;
-  position:relative;
-  z-index:10;
-  transition:all 0.8s ease;
+:root{
+  --orange:#f17a3f;
+  --cream:#e8dcc8;
+  --dark:#0f172a;
+  --gray:#334155;
+  --light-gray:#94a3b8;
+  --white:#ffffff;
 }
 
-#hero.scrolled .hero-content{
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins', sans-serif;}
+
+body{
+  background-color:var(--dark);
+  color:var(--white);
+  overflow-x:hidden;
+  scroll-behavior:smooth;
+}
+
+/* HERO SECTION REDESIGN */
+#hero{
+  height:100vh;
+  width:100%;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  align-items:center;
+  padding:0 10%;
+  gap:40px;
+  position:relative;
+  z-index:10;
+  background:var(--dark);
+  overflow:hidden;
+}
+
+.hero-content{
+  text-align:left;
+  z-index:11;
+  transition:all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body.scrolled .hero-content{
   opacity:0;
+  transform:translateX(-100px);
   pointer-events:none;
 }
 
-.cv-btn{
-  background:transparent;
-  border:2px solid var(--orange);
-  color:var(--orange);
-  margin-left:15px;
+.hero-image-main{
+  width:100%;
+  aspect-ratio:1/1;
+  border-radius:30px;
+  overflow:hidden;
+  box-shadow:0 30px 60px rgba(0,0,0,0.5), 0 0 0 10px rgba(241,122,63,0.1);
+  transition:all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  transform:rotateY(-10deg) rotateX(5deg);
+  z-index:11;
 }
 
-.cv-btn:hover{
-  background:rgba(241,122,63,0.1);
-  color:var(--orange);
-  transform:translateY(-2px);
+.hero-image-main img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+body.scrolled .hero-image-main{
+  opacity:0;
+  transform:translateX(100px) scale(0.8);
+  pointer-events:none;
 }
 
 .hero-content h1{
-  font-size:clamp(2.8rem,6vw,5rem);
-  font-weight:900;
+  font-size:clamp(3rem, 6vw, 5rem);
   line-height:1.1;
   margin-bottom:1.5rem;
-  letter-spacing:-1.5px;
+  font-weight:900;
+  letter-spacing:-0.05em;
 }
 
+.hero-content strong{color:var(--orange); display:block;}
+
 .hero-content p{
-  font-size:1rem;
+  font-size:1.2rem;
   color:var(--light-gray);
-  margin-bottom:2rem;
+  margin-bottom:2.5rem;
+  max-width:500px;
+  line-height:1.6;
+}
+
+.hero-btns{
+  display:flex;
+  gap:1rem;
 }
 
 .hero-btn{
-  display:inline-block;
-  background:var(--orange);
-  color:white;
-  padding:0.9rem 2.2rem;
-  border-radius:50px;
+  padding:1rem 2rem;
+  border-radius:12px;
   text-decoration:none;
-  font-weight:600;
+  font-weight:700;
+  font-size:1rem;
+  transition:all 0.3s;
   border:none;
   cursor:pointer;
-  font-size:0.95rem;
-  transition:all 0.3s;
-  margin-bottom:3rem;
 }
 
-.hero-btn:hover{background:#e0653a;transform:translateY(-2px);}
-
-.profile-pic-container{
-  width:200px;
-  height:200px;
-  border-radius:24px;
-  padding:8px;
-  background:linear-gradient(135deg, var(--orange), #ffb75e);
-  box-shadow:0 20px 40px rgba(0,0,0,0.2), 0 0 0 8px rgba(241,122,63,0.1);
-  margin-bottom:2.5rem;
-  transform-style:preserve-3d;
-  perspective:1000px;
-  transition:all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  cursor:pointer;
+.hero-btn.primary{
+  background:var(--orange);
+  color:white;
+  box-shadow:0 10px 25px rgba(241,122,63,0.3);
 }
 
-.profile-pic-container:hover{
-  transform:translateY(-10px) rotateX(10deg) rotateY(-10deg);
-  box-shadow:0 30px 60px rgba(241,122,63,0.3), 0 0 0 12px rgba(241,122,63,0.15);
+.hero-btn.secondary{
+  background:rgba(255,255,255,0.05);
+  color:white;
+  border:1px solid rgba(255,255,255,0.1);
 }
 
-.profile-pic{
-  width:100%;
-  height:100%;
-  border-radius:18px;
-  object-fit:cover;
-  background:#fff;
-  box-shadow:inset 0 0 20px rgba(0,0,0,0.1);
-  display:block;
+.hero-btn:hover{
+  transform:translateY(-3px);
+  box-shadow:0 15px 30px rgba(0,0,0,0.3);
 }
 
 /* 3D SCENE - DESKTOP MONITOR */
 .scene{
-  position:relative;
-  width:100%;
-  height:600px;
-  perspective:1200px;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100vw;
+  height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:5;
+  pointer-events:none;
+  opacity:0;
+  transform:scale(0.85);
+  transition:all 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body.scrolled .scene{
+  opacity:1;
+  transform:scale(1);
+  pointer-events:all;
 }
 
 .iso-box{
-  position:fixed;
+  position:relative;
   width:500px;
   height:400px;
-  right:80px;
-  top:50%;
-  transform:translate(0,-50%) rotateX(25deg) rotateZ(35deg);
+  transform:rotateX(25deg) rotateZ(35deg);
   transform-style:preserve-3d;
   transition:all 0.8s ease;
 }
 
 body.scrolled .iso-box{
-  position:fixed;
-  width:500px;
-  height:400px;
-  right:50%;
-  top:50%;
-  transform:translate(50%,-50%) rotateX(0deg) rotateZ(0deg) scale(1);
+  transform:rotateX(0deg) rotateZ(0deg) scale(1.5);
 }
 
 /* FLOOR RUG */
@@ -191,12 +222,12 @@ body.scrolled .desk{opacity:0;}
 }
 
 body.scrolled .monitor-main{
-  position:absolute;
+  position:fixed;
   width:90vw;
   height:90vh;
   left:50%;
-  bottom:50%;
-  transform:translate(-50%, 50%) translateZ(0) !important;
+  top:50%;
+  transform:translate(-50%, -50%) translateZ(0) !important;
   border-width:15px;
   z-index:100;
   border-radius:20px;
@@ -236,24 +267,64 @@ body.scrolled .monitor-main{
   color:#fff;
 }
 
-.screen-section.about{
-  background:linear-gradient(135deg, #0d1117, #16212c);
-}
+.screen-section.about{ background:linear-gradient(135deg, #0d1117, #16212c); }
+.screen-section.experience{ background:linear-gradient(135deg, #16212c, #0d1117); }
+.screen-section.projects{ background:linear-gradient(135deg, #0d1117, #16212c); }
+.screen-section.skills{ background:linear-gradient(135deg, #16212c, #0d1117); }
+.screen-section.contact{ background:linear-gradient(135deg, #0d1117, #16212c); }
 
-.screen-section.experience{
-  background:linear-gradient(135deg, #16212c, #0d1117);
-}
+.about-content{ display:grid; grid-template-columns:1.2fr 1fr; gap:40px; }
+.about-text p{ color:rgba(255,255,255,0.8); margin-bottom:1.2rem; font-size:0.9rem; line-height:1.7; }
+.stats{ display:flex; flex-direction:column; gap:30px; }
+.stat{ display:flex; flex-direction:column; }
+.stat-num{ font-size:2rem; font-weight:900; color:var(--orange); }
+.stat-label{ font-size:0.85rem; color:rgba(255,255,255,0.6); margin-top:5px; }
 
-.screen-section.projects{
-  background:linear-gradient(135deg, #0d1117, #16212c);
-}
+.exp-grid{ display:grid; grid-template-columns:1fr 1fr; gap:30px; }
 
-.screen-section.skills{
-  background:linear-gradient(135deg, #16212c, #0d1117);
+.proj-grid{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:20px; }
+.proj-card{
+  background:rgba(255,255,255,0.08); border-radius:10px; overflow:hidden; padding:20px;
+  border:1px solid rgba(255,255,255,0.1); transition:all 0.3s;
 }
+.proj-card:hover{ background:rgba(255,255,255,0.12); transform:translateY(-4px); }
+.proj-icon{ font-size:2rem; margin-bottom:10px; }
+.proj-card h4{ font-size:1rem; margin-bottom:8px; font-weight:700; }
+.proj-card p{ font-size:0.8rem; color:rgba(255,255,255,0.6); line-height:1.5; margin-bottom:10px; }
+.proj-tags{ display:flex; flex-wrap:wrap; gap:6px; }
+.proj-tag{ background:rgba(241,122,63,0.2); color:var(--orange); padding:3px 8px; border-radius:15px; font-size:0.7rem; font-weight:600; }
 
-.screen-section.contact{
-  background:linear-gradient(135deg, #0d1117, #16212c);
+.skills-container{ display:grid; grid-template-columns:1.2fr 1fr; gap:40px; }
+.skill-cats{ display:flex; flex-direction:column; gap:25px; }
+.skill-cat-name{ font-size:0.95rem; font-weight:700; margin-bottom:10px; display:flex; align-items:center; gap:8px; }
+.skill-cat-name::before{ content:''; width:15px; height:3px; background:var(--orange); }
+.skill-tags{ display:flex; flex-wrap:wrap; gap:8px; }
+.skill-tag{
+  background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.1); color:#fff;
+  padding:6px 12px; border-radius:15px; font-size:0.8rem; font-weight:600; transition:all 0.2s;
+}
+.skill-tag:hover{ background:rgba(241,122,63,0.3); border-color:var(--orange); }
+.skill-bars{ display:flex; flex-direction:column; gap:20px; }
+.bar-item{ display:flex; flex-direction:column; }
+.bar-labels{ display:flex; justify-content:space-between; margin-bottom:6px; font-size:0.85rem; font-weight:600; }
+.bar-track{ width:100%; height:8px; background:rgba(255,255,255,0.1); border-radius:10px; overflow:hidden; }
+.bar-fill{ height:100%; background:linear-gradient(90deg,var(--orange),#f4a660); border-radius:10px; }
+
+.contact-grid{ display:grid; grid-template-columns:1fr 1fr; gap:40px; }
+.contact-info{ display:flex; flex-direction:column; gap:25px; }
+.contact-item{ display:flex; gap:15px; }
+.contact-icon{ font-size:1.5rem; width:40px; text-align:center; }
+.contact-item h3{ font-size:0.95rem; margin-bottom:3px; }
+.contact-item a{ color:var(--orange); text-decoration:none; font-size:0.85rem; }
+.contact-form{ display:flex; flex-direction:column; gap:15px; }
+.form-row{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.form-input{
+  padding:10px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15);
+  border-radius:6px; color:#fff; font-family:'Poppins',sans-serif; font-size:0.8rem;
+}
+.form-submit{
+  background:var(--orange); color:#fff; border:none; padding:10px 25px; border-radius:25px;
+  font-weight:700; font-size:0.85rem; cursor:pointer; transition:all 0.2s; align-self:flex-start;
 }
 
 .section-label{
@@ -383,8 +454,6 @@ body.scrolled .plant-container{opacity:0;}
 .leaf:nth-child(2){transform:rotate(0deg) translateY(-8px);left:10px;}
 .leaf:nth-child(3){transform:rotate(-70deg) translateY(0);left:-25px;}
 
-/* CHARACTER CSS REMOVED - Replaced by 3D Anime Avatar in Hero Content */
-
 /* WALL ITEMS */
 .wall-items{
   position:absolute;
@@ -436,35 +505,18 @@ body.scrolled .wall-items{opacity:0;}
 .sticky.blue{background:#b8e7ff;}
 .sticky.yellow{background:#ffe8b8;}
 
-/* ABOUT SECTION IN MONITOR */
-.about-content{
-  display:grid;
-  grid-template-columns:1.2fr 1fr;
-  gap:40px;
+/* SECTION HEADINGS */
+section:not(#hero){
+  background:var(--cream);
+  color:#333;
 }
 
-.about-text p{
-  color:rgba(255,255,255,0.8);
-  margin-bottom:1.2rem;
-  font-size:0.9rem;
-  line-height:1.7;
-}
-
-.stats{
-  display:flex;
-  flex-direction:column;
-  gap:30px;
-}
-
-.stat{display:flex;flex-direction:column;}
-.stat-num{font-size:2rem;font-weight:900;color:var(--orange);}
-.stat-label{font-size:0.85rem;color:rgba(255,255,255,0.6);margin-top:5px;}
-
-/* EXPERIENCE IN MONITOR */
-.exp-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:30px;
+.section-title{
+  font-size:3.5rem;
+  margin-bottom:3rem;
+  text-align:center;
+  color:var(--dark);
+  font-weight:900;
 }
 
 .exp-card{
@@ -481,144 +533,6 @@ body.scrolled .wall-items{opacity:0;}
 .exp-card li{margin-bottom:8px;padding-left:15px;position:relative;}
 .exp-card li::before{content:'▸';position:absolute;left:0;color:var(--orange);}
 
-/* PROJECTS IN MONITOR */
-.proj-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr 1fr;
-  gap:20px;
-}
-
-.proj-card{
-  background:rgba(255,255,255,0.08);
-  border-radius:10px;
-  overflow:hidden;
-  padding:20px;
-  border:1px solid rgba(255,255,255,0.1);
-  transition:all 0.3s;
-}
-
-.proj-card:hover{background:rgba(255,255,255,0.12);transform:translateY(-4px);}
-
-.proj-icon{font-size:2rem;margin-bottom:10px;}
-.proj-card h4{font-size:1rem;margin-bottom:8px;font-weight:700;}
-.proj-card p{font-size:0.8rem;color:rgba(255,255,255,0.6);line-height:1.5;margin-bottom:10px;}
-
-.proj-tags{display:flex;flex-wrap:wrap;gap:6px;}
-.proj-tag{
-  background:rgba(241,122,63,0.2);
-  color:var(--orange);
-  padding:3px 8px;
-  border-radius:15px;
-  font-size:0.7rem;
-  font-weight:600;
-}
-
-/* SKILLS IN MONITOR */
-.skills-container{
-  display:grid;
-  grid-template-columns:1.2fr 1fr;
-  gap:40px;
-}
-
-.skill-cats{display:flex;flex-direction:column;gap:25px;}
-.skill-cat{display:flex;flex-direction:column;}
-.skill-cat-name{font-size:0.95rem;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:8px;}
-.skill-cat-name::before{content:'';width:15px;height:3px;background:var(--orange);}
-
-.skill-tags{display:flex;flex-wrap:wrap;gap:8px;}
-.skill-tag{
-  background:rgba(255,255,255,0.08);
-  border:1px solid rgba(255,255,255,0.1);
-  color:#fff;
-  padding:6px 12px;
-  border-radius:15px;
-  font-size:0.8rem;
-  font-weight:600;
-  transition:all 0.2s;
-}
-
-.skill-tag:hover{background:rgba(241,122,63,0.3);border-color:var(--orange);}
-
-.skill-bars{display:flex;flex-direction:column;gap:20px;}
-.bar-item{display:flex;flex-direction:column;}
-.bar-labels{display:flex;justify-content:space-between;margin-bottom:6px;font-size:0.85rem;font-weight:600;}
-.bar-labels span:last-child{color:var(--orange);}
-.bar-track{width:100%;height:8px;background:rgba(255,255,255,0.1);border-radius:10px;overflow:hidden;}
-.bar-fill{height:100%;background:linear-gradient(90deg,var(--orange),#f4a660);border-radius:10px;animation:barFill 1.5s ease forwards;}
-@keyframes barFill{from{width:0;}to{width:var(--width,85%);}}
-
-/* CONTACT IN MONITOR */
-.contact-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:40px;
-}
-
-.contact-info{display:flex;flex-direction:column;gap:25px;}
-.contact-item{display:flex;gap:15px;}
-.contact-icon{font-size:1.5rem;width:40px;text-align:center;}
-.contact-item h3{font-size:0.95rem;margin-bottom:3px;}
-.contact-item a{color:var(--orange);text-decoration:none;font-size:0.85rem;}
-
-.contact-form{display:flex;flex-direction:column;gap:15px;}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
-.form-input{
-  padding:10px;
-  background:rgba(255,255,255,0.08);
-  border:1px solid rgba(255,255,255,0.15);
-  border-radius:6px;
-  color:#fff;
-  font-family:'Poppins',sans-serif;
-  font-size:0.8rem;
-}
-
-.form-input:focus{outline:none;background:rgba(255,255,255,0.12);border-color:var(--orange);}
-.form-input::placeholder{color:rgba(255,255,255,0.3);}
-textarea.form-input{resize:vertical;min-height:80px;}
-
-.form-submit{
-  background:var(--orange);
-  color:#fff;
-  border:none;
-  padding:10px 25px;
-  border-radius:25px;
-  font-weight:700;
-  font-size:0.85rem;
-  cursor:pointer;
-  transition:all 0.2s;
-  align-self:flex-start;
-}
-
-.form-submit:hover{background:#e0653a;}
-
-@media(max-width:1024px){
-  #hero{grid-template-columns:1fr;padding:60px 40px;}
-  body.scrolled .iso-box{width:500px;height:400px;right:50%;}
-  body.scrolled .monitor-main{width:95vw;height:95vh;}
-  .proj-grid{grid-template-columns:1fr 1fr;}
-}
-
-@media(max-width:768px){
-  #hero{padding:40px 20px;}
-  .hero-content h1{font-size:2.5rem;}
-  body.scrolled .iso-box{width:500px;}
-  body.scrolled .monitor-main{width:100vw;height:100vh;border-radius:0;border-width:0;}
-  
-  .about-content, .exp-grid, .skills-container, .contact-grid {
-    grid-template-columns:1fr;
-    gap:30px;
-  }
-  .proj-grid {
-    grid-template-columns:1fr;
-  }
-  .screen-section {
-    padding:40px 20px;
-  }
-  .cv-btn {
-    margin-left:0;
-    margin-top:15px;
-  }
-}
 </style>
 </head>
 <body>
@@ -626,56 +540,37 @@ textarea.form-input{resize:vertical;min-height:80px;}
 <!-- HERO SECTION -->
 <section id="hero">
   <div class="hero-content">
-    <div class="profile-pic-container">
-      <!-- Added a great 3D anime style fallback avatar if local file isn't found -->
-      <img src="anime_avatar.png" alt="3D Anime Avatar" class="profile-pic" onerror="this.src='https://api.dicebear.com/9.x/micah/svg?seed=Lazim&backgroundColor=e8dcc8'"/>
+    <h1>Hi, I'm<br/><strong>Lazim Sharafudheen</strong></h1>
+    <p>Software Engineer & Data Analyst. Crafting immersive digital experiences and analytical insights from Doha, Qatar.</p>
+    <div class="hero-btns">
+      <a href="#contact" class="hero-btn primary">Get in touch</a>
+      <a href="#" class="hero-btn secondary" download>Download CV</a>
     </div>
-    <h1>Hi, my name is<br/><strong>Lazim</strong>.</h1>
-    <p>Software Engineer & Data Analyst. Building AI systems and beautiful dashboards.</p>
-    <div>
-      <button class="hero-btn" onclick="scrollDown()">Get in touch</button>
-      <a href="#" class="hero-btn cv-btn" download>Download CV</a>
-    </div>
+  </div>
+
+  <div class="hero-image-main">
+    <img src="anime_avatar.png" alt="Lazim 3D Artwork">
   </div>
 
   <div class="scene">
     <div class="iso-box">
-      <!-- Floor -->
       <div class="floor"></div>
-
-      <!-- Desk -->
       <div class="desk"></div>
-
-      <!-- Main Monitor (becomes fullscreen) -->
       <div class="monitor-main">
         <div class="monitor-screen">
-          
           <!-- ABOUT SECTION -->
           <div class="screen-section about">
             <div class="section-label">01 ABOUT</div>
             <h2 class="section-title">Who I am</h2>
             <p class="section-desc">I'm a passionate software engineer and data analyst based in Doha, Qatar.</p>
-
             <div class="about-content">
               <div class="about-text">
                 <p>Currently working at <strong>Mannai Corporation QPSC</strong> as a Software Engineer, deploying AI-powered surveillance systems for government infrastructure, including FIFA U19 and Arab Cup.</p>
                 <p>Previously at <strong>Decodet Technologies</strong> as a Data Analyst, building predictive models and dashboards that reduced costs and improved decision-making speed by 30%.</p>
-                <p>I hold a BE in Computer Science from Mysore Technical University (GPA 7.4) with hands-on experience in computer vision, data analytics, and security infrastructure.</p>
               </div>
-
               <div class="stats">
-                <div class="stat">
-                  <div class="stat-num">11%</div>
-                  <div class="stat-label">False alert reduction</div>
-                </div>
-                <div class="stat">
-                  <div class="stat-num">30%</div>
-                  <div class="stat-label">Faster decisions</div>
-                </div>
-                <div class="stat">
-                  <div class="stat-num">2+</div>
-                  <div class="stat-label">Years experience</div>
-                </div>
+                <div class="stat"><div class="stat-num">11%</div><div class="stat-label">False alert reduction</div></div>
+                <div class="stat"><div class="stat-num">30%</div><div class="stat-label">Faster decisions</div></div>
               </div>
             </div>
           </div>
@@ -684,30 +579,18 @@ textarea.form-input{resize:vertical;min-height:80px;}
           <div class="screen-section experience">
             <div class="section-label">02 EXPERIENCE</div>
             <h2 class="section-title">Where I've worked</h2>
-
             <div class="exp-grid">
               <div class="exp-card">
                 <h3>Mannai Corporation QPSC</h3>
                 <div class="role">Software Engineer</div>
                 <div class="date">Oct 2025 – Present | Doha</div>
-                <ul>
-                  <li>Reduced false alerts by 11% with YOLO/TensorFlow</li>
-                  <li>Delivered security systems for FIFA U19 & Arab Cup</li>
-                  <li>Integrated AXIS/Ipsotek platforms</li>
-                  <li>Engineered end-to-end security workflows</li>
-                </ul>
+                <ul><li>Reduced false alerts by 11% with YOLO/TensorFlow</li><li>Delivered security systems for FIFA U19</li></ul>
               </div>
-
               <div class="exp-card">
                 <h3>Decodet Technologies</h3>
                 <div class="role">Data Analyst</div>
                 <div class="date">Jul 2024 – Oct 2025 | Bengaluru</div>
-                <ul>
-                  <li>Automated reporting — reduced manual effort 20%</li>
-                  <li>Root cause analysis — 15% cost reduction</li>
-                  <li>Designed Power BI & Tableau dashboards</li>
-                  <li>Built predictive models for demand forecasting</li>
-                </ul>
+                <ul><li>Automated reporting — reduced manual effort 20%</li><li>15% cost reduction via RCA</li></ul>
               </div>
             </div>
           </div>
@@ -716,160 +599,33 @@ textarea.form-input{resize:vertical;min-height:80px;}
           <div class="screen-section projects">
             <div class="section-label">03 PROJECTS</div>
             <h2 class="section-title">What I've built</h2>
-
             <div class="proj-grid">
-              <a class="proj-card" href="https://billing-app-sepia.vercel.app/" target="_blank" style="color:inherit;text-decoration:none;">
-                <div class="proj-icon">📦</div>
-                <h4>ERP Billing App</h4>
-                <p>Cross-platform app with barcode scanning and inventory management. LIVE LINK.</p>
-                <div class="proj-tags">
-                  <span class="proj-tag">React</span>
-                  <span class="proj-tag">Barcode</span>
-                  <span class="proj-tag">Inventory</span>
-                </div>
-              </a>
-
-              <div class="proj-card">
-                <div class="proj-icon">🎯</div>
-                <h4>AI Surveillance</h4>
-                <p>YOLO/TensorFlow models for real-time object detection. 11% false alert reduction.</p>
-                <div class="proj-tags">
-                  <span class="proj-tag">YOLO</span>
-                  <span class="proj-tag">TensorFlow</span>
-                  <span class="proj-tag">Docker</span>
-                </div>
-              </div>
-
-              <div class="proj-card">
-                <div class="proj-icon">📊</div>
-                <h4>Supply Chain Dashboard</h4>
-                <p>Port Operations Dashboard tracking KPIs and inventory delays in real-time.</p>
-                <div class="proj-tags">
-                  <span class="proj-tag">Power BI</span>
-                  <span class="proj-tag">SQL</span>
-                  <span class="proj-tag">Logistics</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- SKILLS SECTION -->
-          <div class="screen-section skills">
-            <div class="section-label">04 SKILLS</div>
-            <h2 class="section-title">My toolkit</h2>
-
-            <div class="skills-container">
-              <div class="skill-cats">
-                <div class="skill-cat">
-                  <div class="skill-cat-name">AI & Computer Vision</div>
-                  <div class="skill-tags">
-                    <span class="skill-tag">Python</span>
-                    <span class="skill-tag">TensorFlow</span>
-                    <span class="skill-tag">YOLO</span>
-                    <span class="skill-tag">Docker</span>
-                  </div>
-                </div>
-
-                <div class="skill-cat">
-                  <div class="skill-cat-name">Data & Analytics</div>
-                  <div class="skill-tags">
-                    <span class="skill-tag">Power BI</span>
-                    <span class="skill-tag">Tableau</span>
-                    <span class="skill-tag">DAX</span>
-                    <span class="skill-tag">ETL</span>
-                  </div>
-                </div>
-
-                <div class="skill-cat">
-                  <div class="skill-cat-name">Databases</div>
-                  <div class="skill-tags">
-                    <span class="skill-tag">SQL</span>
-                    <span class="skill-tag">MySQL</span>
-                    <span class="skill-tag">PostgreSQL</span>
-                    <span class="skill-tag">MongoDB</span>
-                  </div>
-                </div>
-              </div>
-
-              <div class="skill-bars">
-                <div class="bar-item">
-                  <div class="bar-labels"><span>AI & Vision</span><span>90%</span></div>
-                  <div class="bar-track"><div class="bar-fill" style="--width:90%"></div></div>
-                </div>
-                <div class="bar-item">
-                  <div class="bar-labels"><span>Data Analytics</span><span>88%</span></div>
-                  <div class="bar-track"><div class="bar-fill" style="--width:88%"></div></div>
-                </div>
-                <div class="bar-item">
-                  <div class="bar-labels"><span>Python / SQL</span><span>85%</span></div>
-                  <div class="bar-track"><div class="bar-fill" style="--width:85%"></div></div>
-                </div>
-                <div class="bar-item">
-                  <div class="bar-labels"><span>Power BI</span><span>87%</span></div>
-                  <div class="bar-track"><div class="bar-fill" style="--width:87%"></div></div>
-                </div>
-                <div class="bar-item">
-                  <div class="bar-labels"><span>Security Infra</span><span>82%</span></div>
-                  <div class="bar-track"><div class="bar-fill" style="--width:82%"></div></div>
-                </div>
-              </div>
+              <div class="proj-card"><h4>ERP Billing App</h4><p>Cross-platform app with barcode scanning.</p></div>
+              <div class="proj-card"><h4>AI Surveillance</h4><p>YOLO models for real-time detection.</p></div>
+              <div class="proj-card"><h4>Supply Chain</h4><p>KPI tracking dashboards.</p></div>
             </div>
           </div>
 
           <!-- CONTACT SECTION -->
           <div class="screen-section contact">
-            <div class="section-label">05 CONTACT</div>
-            <h2 class="section-title">Let's work together</h2>
-            <p class="section-desc">Open to full-time roles and projects. Based in Doha with valid QID & NOC.</p>
-
+            <div class="section-label">04 CONTACT</div>
+            <h2 class="section-title">Let's connect</h2>
             <div class="contact-grid">
               <div class="contact-info">
-                <div class="contact-item">
-                  <div class="contact-icon">✉️</div>
-                  <div><h3>Email</h3><a href="mailto:lazimlazz@gmail.com">lazimlazz@gmail.com</a></div>
-                </div>
-                <div class="contact-item">
-                  <div class="contact-icon">📞</div>
-                  <div><h3>Phone</h3><a href="tel:+97477431981">+974 7743 1981</a></div>
-                </div>
-                <div class="contact-item">
-                  <div class="contact-icon">💼</div>
-                  <div><h3>LinkedIn</h3><a href="https://linkedin.com/in/lazim-sharafudheen" target="_blank">View Profile</a></div>
-                </div>
-                <div class="contact-item" style="margin-top:15px;">
-                  <a href="#" class="form-submit" style="text-decoration:none;display:inline-block;text-align:center;width:fit-content;" download>📄 Download Resume / CV</a>
-                </div>
-              </div>
-
-              <div class="contact-form">
-                <div class="form-row">
-                  <input class="form-input" type="text" placeholder="Your Name" required/>
-                  <input class="form-input" type="email" placeholder="Your Email" required/>
-                </div>
-                <input class="form-input" type="text" placeholder="Subject" required/>
-                <textarea class="form-input" placeholder="Tell me about your project..."></textarea>
-                <button class="form-submit" onclick="alert('Thank you! I will get back to you shortly.')">Send Message →</button>
+                <div class="contact-item"><h3>Email</h3><a href="mailto:lazimlazz@gmail.com">lazimlazz@gmail.com</a></div>
+                <div class="contact-item"><h3>Phone</h3><a href="tel:+97477431981">+974 7743 1981</a></div>
               </div>
             </div>
           </div>
-
         </div>
       </div>
-
-      <!-- Secondary Monitor -->
       <div class="monitor-right"></div>
-
-      <!-- Keyboard -->
       <div class="keyboard"></div>
-
-      <!-- Books -->
       <div class="books">
         <div class="book b1"></div>
         <div class="book b2"></div>
         <div class="book b3"></div>
       </div>
-
-      <!-- Plant -->
       <div class="plant-container">
         <div class="leaves">
           <div class="leaf"></div>
@@ -878,10 +634,6 @@ textarea.form-input{resize:vertical;min-height:80px;}
         </div>
         <div class="pot"></div>
       </div>
-
-
-
-      <!-- Wall Items -->
       <div class="wall-items">
         <div class="wall-item">📚</div>
         <div class="wall-item cork">
@@ -895,26 +647,20 @@ textarea.form-input{resize:vertical;min-height:80px;}
   </div>
 </section>
 
-<!-- Extra space for scrolling -->
-<div style="height:3000px;background:var(--cream);"></div>
+<div style="height:3000px;"></div>
 
 <script>
-function scrollDown() {
-  window.scrollBy({top: window.innerHeight, behavior: 'smooth'});
-}
-
-// Monitor expansion on scroll
 let isExpanded = false;
 
 window.addEventListener('scroll', () => {
   const heroSection = document.getElementById('hero');
-  const scrolled = window.scrollY > window.innerHeight * 0.3;
-
-  if(scrolled && !isExpanded) {
+  const isScrolled = window.scrollY > 150;
+  
+  if(isScrolled && !isExpanded) {
     document.body.classList.add('scrolled');
     heroSection.classList.add('scrolled');
     isExpanded = true;
-  } else if(!scrolled && isExpanded) {
+  } else if(!isScrolled && isExpanded) {
     document.body.classList.remove('scrolled');
     heroSection.classList.remove('scrolled');
     isExpanded = false;

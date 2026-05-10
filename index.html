@@ -24,9 +24,22 @@ body{background:var(--cream);color:var(--dark);font-family:'Poppins',sans-serif;
   transition:all 0.8s ease;
 }
 
-#hero.scrolled{
+#hero.scrolled .hero-content{
   opacity:0;
   pointer-events:none;
+}
+
+.cv-btn{
+  background:transparent;
+  border:2px solid var(--orange);
+  color:var(--orange);
+  margin-left:15px;
+}
+
+.cv-btn:hover{
+  background:rgba(241,122,63,0.1);
+  color:var(--orange);
+  transform:translateY(-2px);
 }
 
 .hero-content h1{
@@ -643,13 +656,29 @@ textarea.form-input{resize:vertical;min-height:80px;}
   #hero{grid-template-columns:1fr;padding:60px 40px;}
   body.scrolled .iso-box{width:800px;height:560px;right:50%;}
   body.scrolled .monitor-main{width:95vw;height:95vh;}
+  .proj-grid{grid-template-columns:1fr 1fr;}
 }
 
 @media(max-width:768px){
   #hero{padding:40px 20px;}
   .hero-content h1{font-size:2.5rem;}
   body.scrolled .iso-box{width:600px;}
-  body.scrolled .monitor-main{width:100vw;height:100vh;border-radius:0;}
+  body.scrolled .monitor-main{width:100vw;height:100vh;border-radius:0;border-width:0;}
+  
+  .about-content, .exp-grid, .skills-container, .contact-grid {
+    grid-template-columns:1fr;
+    gap:30px;
+  }
+  .proj-grid {
+    grid-template-columns:1fr;
+  }
+  .screen-section {
+    padding:40px 20px;
+  }
+  .cv-btn {
+    margin-left:0;
+    margin-top:15px;
+  }
 }
 </style>
 </head>
@@ -660,7 +689,10 @@ textarea.form-input{resize:vertical;min-height:80px;}
   <div class="hero-content">
     <h1>Hi, my name is<br/><strong>Lazim</strong>.</h1>
     <p>Software Engineer & Data Analyst. Building AI systems and beautiful dashboards.</p>
-    <button class="hero-btn" onclick="scrollDown()">Get in touch</button>
+    <div>
+      <button class="hero-btn" onclick="scrollDown()">Get in touch</button>
+      <a href="#" class="hero-btn cv-btn" download>Download CV</a>
+    </div>
     <div class="icon-circle">👨‍💻</div>
   </div>
 
@@ -862,6 +894,9 @@ textarea.form-input{resize:vertical;min-height:80px;}
                   <div class="contact-icon">💼</div>
                   <div><h3>LinkedIn</h3><a href="https://linkedin.com/in/lazim-sharafudheen" target="_blank">View Profile</a></div>
                 </div>
+                <div class="contact-item" style="margin-top:15px;">
+                  <a href="#" class="form-submit" style="text-decoration:none;display:inline-block;text-align:center;width:fit-content;" download>📄 Download Resume / CV</a>
+                </div>
               </div>
 
               <div class="contact-form">
@@ -932,7 +967,7 @@ textarea.form-input{resize:vertical;min-height:80px;}
 </section>
 
 <!-- Extra space for scrolling -->
-<div style="height:500px;background:var(--cream);"></div>
+<div style="height:3000px;background:var(--cream);"></div>
 
 <script>
 function scrollDown() {
